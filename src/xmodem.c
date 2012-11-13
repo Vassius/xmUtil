@@ -35,9 +35,9 @@ uint8_t checksum(struct xm_packet *packet) {
 }
 
 int send_packet(int device, struct xm_packet *packet) {
-    //int bytes_written;
-    //int bytes_written_so_far = 0;
-   /* 
+    int bytes_written;
+    int bytes_written_so_far = 0;
+   
     while (bytes_written_so_far < sizeof(struct xm_packet)) {
         bytes_written = write(device, packet + bytes_written_so_far, sizeof(struct xm_packet) - bytes_written_so_far);
         if (bytes_written == -1) {
@@ -46,12 +46,7 @@ int send_packet(int device, struct xm_packet *packet) {
         }
         bytes_written_so_far += bytes_written;
     }
-    */
-    if (write(device, &(packet->code), 1) != 1) printf("Error\n");
-    if (write(device, &(packet->blk), 1) != 1) printf("Error\n");
-    if (write(device, &(packet->blk_inv), 1) != 1) printf("Error\n");
-    if (write(device, &(packet->data), 128) != 128) printf("Error\n");
-    if (write(device, &(packet->chk), 1) != 1) printf("Error\n"); 
+    
     return 0;
 }
 
@@ -64,7 +59,6 @@ int xmodem_send(int device, FILE *fd) {
 
     while ((bytes_read = fread(&buf, sizeof(uint8_t), BUFFER_SIZE, fd)) > 0) {
         struct xm_packet packet;
-        //int bytes_written, bytes_written_so_far, i;
         
         /* Set up the xmodem packet to be sent, according to xmodem specification */
         packet.code = SOH;

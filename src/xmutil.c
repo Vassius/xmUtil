@@ -61,13 +61,8 @@ int main(int argc, char* argv[]) {
 
     for (i = 0; i < sizeof(rcv_buf); i++)
         rcv_buf[i] = 0;
-    retval = read(fd, &rcv_buf, sizeof(rcv_buf));
-    printf("retval: %i\n", retval);
-    printf("rcv_buf: ");
-    for (i = 0; i < sizeof(rcv_buf); i++) {
-        printf("%02x ", rcv_buf[i]);
-    }
-    printf("\n");
+    printf("Initializing file transfer...\n");
+    read(fd, &rcv_buf, sizeof(rcv_buf));
     retval = xmodem_send(fd, file_to_send);
 
     if (retval == -1) 
