@@ -92,7 +92,8 @@ int xmodem_send(int device, FILE *fd) {
             sleep(1);
             
         }
-        block++;
+        if (block == 255) block = 0;
+        else block++;
 
     }
     for (i = 0; i < 10; i++) {
