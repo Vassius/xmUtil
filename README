@@ -3,10 +3,12 @@ xmUtil - Xmodem file transfer utility
 Author: Markus Wiik <vassius@gmail.com>
 
 This is a small utility for transferring a kernel image to a Raspberry Pi. The RPi is
-assumed to run a bootloader which receives files via the Xmodem protocol. This program
-has been tested using dwelch67's bootloader05 
-(https://github.com/dwelch67/raspberrypi/tree/master/bootloader05), but should work with
-any standards compliant xmodem receiver. 
+assumed to run a bootloader which receives files via the Xmodem protocol. This 
+program has been tested using dwelch67's bootloader05 
+(https://github.com/dwelch67/raspberrypi/tree/master/bootloader05), but should work 
+with any standards compliant xmodem receiver. 
 
-xmUtil has been developed, compiles and runs on Mac OS X 10.8. Although I havn't tested,
-it should work on any POSIX system. 
+xmUtil has been developed, compiles and runs on Mac OS X 10.8. Although I havn't 
+tested, it should work on any POSIX system. 
+
+xmUtil is MIT licensed. For details, read the LICENSE file. 
