@@ -18,7 +18,6 @@ int main(int argc, char* argv[]) {
     int fd; /* File descriptor for serial device */
     FILE *file_to_send; /* File descriptor for the file to send */
     struct termios attr; /* Struct to hold serial device attributes */
-    uint8_t i;
     int retval;
     uint8_t rcv_buf[128];
 
