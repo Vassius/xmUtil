@@ -57,10 +57,6 @@ int main(int argc, char* argv[]) {
     tcsetattr(fd, TCSANOW, &attr);
     fcntl(fd, F_SETFL, 0);
 
-    /* TODO: Read the initial bytes from serial port */
-
-    for (i = 0; i < sizeof(rcv_buf); i++)
-        rcv_buf[i] = 0;
     printf("Initializing file transfer...\n");
     read(fd, &rcv_buf, sizeof(rcv_buf));
     retval = xmodem_send(fd, file_to_send);
