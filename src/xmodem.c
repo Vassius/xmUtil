@@ -55,7 +55,14 @@ int xmodem_send(int device, FILE *fd) {
     uint8_t buf[BUFFER_SIZE];
     uint8_t block = 1;
     size_t bytes_read;
-    printf("Sending file...\n");
+    long pos;
+    
+    /* Get size of file to send */
+    fseek(fd, 0L, SEEK_END);
+    pos = ftell(fd);
+    fseek(fd, 0L, SEEK_SET);
+    
+    printf("Sending %li bytes...\n", pos);
 
     while ((bytes_read = fread(&buf, sizeof(uint8_t), BUFFER_SIZE, fd)) > 0) {
         struct xm_packet packet;
