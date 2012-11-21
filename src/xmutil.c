@@ -49,15 +49,20 @@ int main(int argc, char* argv[]) {
     attr.c_cflag &= ~CSIZE;
     attr.c_cflag |= CS8;
     
+    /* Turn off flow control */
     attr.c_cflag &= ~CRTSCTS;
     attr.c_iflag &= ~(IXON | IXOFF | IXANY);
     attr.c_lflag &= ~(ICANON | ECHO | ECHOE | ISIG);
+    
     /* Apply attributes to the serial port device */
     tcsetattr(fd, TCSANOW, &attr);
     fcntl(fd, F_SETFL, 0);
 
     printf("Initializing file transfer...\n");
     read(fd, &rcv_buf, sizeof(rcv_buf));
+    
+    /* Call xmodem_send to do the actual file transfer */
+    
     retval = xmodem_send(fd, file_to_send);
 
     if (retval == -1) 
@@ -65,6 +70,8 @@ int main(int argc, char* argv[]) {
     else 
         printf("File transfer finished successfully.\n");
 
+    /* Clean up... */
+    
     fclose(file_to_send);
     close(fd);
 
